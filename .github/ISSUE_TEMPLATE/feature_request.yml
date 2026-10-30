@@ -1,0 +1,22 @@
+name: Feature request
+description: Something missing or that should work differently.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What you would like
+      description: If it is about matching the original game, describe what the original does (in your own words; no captures or extracted files).
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+  - type: checkboxes
+    id: no-game-data
+    attributes:
+      label: No game data
+      options:
+        - label: This request contains no game files, ISO images, saves or links to them.
+          required: true

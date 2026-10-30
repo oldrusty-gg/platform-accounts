@@ -1,0 +1,17 @@
+[package]
+name = "platform-accounts"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Platform account foundation: email addresses and their verification, password reset by email, account states, supporter flags, an EmailSender abstraction. No dependency on any game crate (it moves to the platform service's own repository)."
+
+[dependencies]
+platform-sdk = { path = "../../../platform-sdk/crates/platform-sdk" }
+serde.workspace = true
+serde_json.workspace = true
+# The same SQLite as the friends server (one file today; the platform
+# service's own database later).
+rusqlite = { version = "0.37", features = ["bundled"] }
+# HMAC-SHA256 for codes and signed links, the OS random source.
+ring = "0.17"

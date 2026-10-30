@@ -1,0 +1,42 @@
+name: Online play or server problem
+description: Connecting, accounts, the lobby or online matches.
+labels: [online]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Security problems (for example a way to take over accounts or crash the server) go to the private channel in SECURITY.md, not here.
+        Never post your password or the contents of `online-session.json`.
+  - type: input
+    id: version
+    attributes:
+      label: Release
+    validations:
+      required: true
+  - type: dropdown
+    id: server
+    attributes:
+      label: Server
+      options:
+        - The community server
+        - My own server (roses-server hub)
+    validations:
+      required: true
+  - type: input
+    id: account
+    attributes:
+      label: Your account name (optional)
+      description: Only if the problem is with your account.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: The message the launcher or the game showed, and roughly when (date, time and time zone).
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste the relevant lines of game.log / launcher.log (and the server log if it is your own server).
+      render: text

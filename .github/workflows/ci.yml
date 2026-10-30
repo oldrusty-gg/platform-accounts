@@ -1,0 +1,56 @@
+# Build and test everything that needs no game data, and check that the
+# tree holds no game data, personal paths, server addresses or binaries.
+# Sibling repositories are checked out beside this one (docs/REPOSITORIES.md);
+# the repository variable ROSES_SIBLING_REF picks their branch or tag.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  ROSES_MUTE: "1"
+  CARGO_TERM_COLOR: always
+  RUST_TOOLCHAIN: "1.96.1"
+
+jobs:
+  content-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Content guard
+        run: python scripts/publish/content_guard.py .
+
+  test:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: platform-accounts
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/platform-sdk
+          ref: ${{ vars.ROSES_SIBLING_REF || 'main' }}
+          path: platform-sdk
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: platform-accounts -> target
+      - name: Build
+        working-directory: platform-accounts
+        run: cargo build --workspace --locked
+      - name: Test
+        working-directory: platform-accounts
+        run: cargo test --workspace --locked

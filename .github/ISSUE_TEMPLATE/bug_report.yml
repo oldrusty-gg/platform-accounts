@@ -1,0 +1,50 @@
+name: Bug report
+description: Something in the launcher, the importer or the game does not work.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not attach or link game files**: no ISO images, files from the disc, memory-card saves, BIOS files or captures of the original game. Issues containing them are deleted.
+        Logs are fine: the launcher's "Report a problem" opens `roses-data\logs\` (launcher.log, game.log and the "-previous" copies). They contain messages and folder paths on your PC; remove anything you do not want to share.
+  - type: input
+    id: version
+    attributes:
+      label: Release
+      description: The release name from README.txt or the launcher's window title.
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Windows version and graphics card
+      placeholder: Windows 11 23H2, NVIDIA GTX 1060 driver 560.94
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what happened instead. If the game stopped, copy the window title ("Roses - stopped: ...").
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen again
+      placeholder: |
+        1. Continue from the memory card
+        2. Duel at ...
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste the relevant part of game.log / launcher.log.
+      render: text
+  - type: checkboxes
+    id: no-game-data
+    attributes:
+      label: No game data
+      options:
+        - label: This report contains no game files, ISO images, saves or links to them.
+          required: true

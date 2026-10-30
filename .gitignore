@@ -1,0 +1,63 @@
+# User-supplied game data and local reverse-engineering output.
+/work/
+/game-data/
+/extracted/
+/captures/
+*.iso
+*.ISO
+*.7z
+*.chd
+*.bin
+*.elf
+*.sav
+*.ps2
+*.p2s
+
+# Build output.
+/target/
+
+# Python caches.
+__pycache__/
+*.pyc
+
+# Built executables, debug symbols and packages (release builds live in work).
+*.exe
+*.pdb
+*.dll
+*.zip
+
+# Per-user online config, imported game data and local game data folders.
+online.json
+roses-data/
+local-data/
+
+# Server databases and TLS material, if a server is ever run from the tree.
+*.db
+*.db-*
+*.pem
+*.key
+*.crt
+
+# Memory cards, saves and capture output from local runs.
+*.mcd
+memory-card*/
+captures*/
+
+# Movie and audio intermediates.
+*.pss
+*.ss2
+*.mp4
+*.wav
+*.ogg
+
+# Editors and logs.
+.vs/
+.idea/
+.vscode/
+*.log
+
+# Build output of every workspace (the game crate has its own).
+target/
+# Imported game data, research notes and builds: your local work folder.
+/work/
+/research/
