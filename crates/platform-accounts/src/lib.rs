@@ -5,7 +5,7 @@
 //! keyed by that table's user id, with no foreign key and no dependency on
 //! the server's crate, so the same code (and a copy of the rows) moves to
 //! the platform service unchanged. See
-//! `work/research/platform/PLATFORM-PLAN.md`.
+//! the project notes.
 //!
 //! - [`store::PlatformStore`]: email addresses (verified or pending),
 //!   account states, verification and password-reset codes (HMAC-hashed,
